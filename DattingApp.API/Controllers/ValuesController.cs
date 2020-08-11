@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DattingApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreWebAPIOnly.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
+    [ApiController]
     // ControllerBase instead of Controller
     public class ValuesController : ControllerBase 
     {
@@ -27,6 +29,7 @@ namespace AspNetCoreWebAPIOnly.Controllers
         }
  
         // GET api/values/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
        public async Task<IActionResult> GetValue(int id)
         {
